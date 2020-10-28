@@ -33,3 +33,8 @@ resource "ibm_is_subnet" "nlbnet" { #find/replace `devbundle` for each new bundl
   zone = var.zone
   depends_on = [ibm_is_vpc_address_prefix.prefix]
 }
+
+resource "ibm_is_lb" "lb" {
+  name    = "dev-lb"
+  subnets = [ibm_is_subnet.nlbnet.id]
+}
